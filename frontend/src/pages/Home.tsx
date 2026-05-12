@@ -19,6 +19,10 @@ import {
   Clock,
   Award,
 } from 'lucide-react';
+import heroImage from '../assets/hero_image.png';
+import uploadWorkflowImage from '../assets/Citizen_upload_workflow_image.png';
+import verificationDemoImage from '../assets/Verification_demo_image.png';
+import officeVerificationImage from '../assets/office_verification_image.png';
 
 const stats = [
   { label: 'Documents Attested', value: '41,267+', icon: <FileText className="h-5 w-5 text-blue-600" /> },
@@ -165,6 +169,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 pt-24 pb-20">
+        <div className="absolute inset-0">
+          <img src={heroImage} alt="" className="h-full w-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-slate-950/75" />
+        </div>
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -181,41 +189,57 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mx-auto max-w-4xl text-center">
-            <h1 className="mb-6 text-4xl font-black leading-tight text-white sm:text-5xl md:text-6xl">
-              Attest Once.{' '}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Verify Forever.
-              </span>
-            </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-              Replace manual document attestation with secure digital verification. Trusted by government offices,
-              banks, and universities across Bangladesh.
-            </p>
-            <p className="mb-10 text-sm text-slate-400">
-              সত্যিকারের ডিজিটাল সনদ সত্যায়ন — দ্রুত, নিরাপদ, বিশ্বাসযোগ্য
-            </p>
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="mx-auto max-w-4xl text-center lg:mx-0 lg:text-left">
+              <h1 className="mb-6 text-4xl font-black leading-tight text-white sm:text-5xl md:text-6xl">
+                Attest Once.{' '}
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  Verify Forever.
+                </span>
+              </h1>
+              <p className="mx-auto mb-4 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl lg:mx-0">
+                Replace manual document attestation with secure digital verification. Trusted by government offices,
+                banks, and universities across Bangladesh.
+              </p>
+              <p className="mb-10 text-sm text-slate-400">
+                সত্যিকারের ডিজিটাল সনদ সত্যায়ন — দ্রুত, নিরাপদ, বিশ্বাসযোগ্য
+              </p>
 
-            <div className="mb-12 flex flex-col justify-center gap-3 sm:flex-row">
-              <ButtonLink to="/register" iconRight={<ArrowRight className="h-5 w-5" />}>
-                Start Free — Upload Document
-              </ButtonLink>
-              <ButtonLink to="/verify" variant="dark" iconLeft={<Search className="h-5 w-5" />}>
-                Verify a Document
-              </ButtonLink>
+              <div className="mb-12 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+                <ButtonLink to="/register" iconRight={<ArrowRight className="h-5 w-5" />}>
+                  Start Free — Upload Document
+                </ButtonLink>
+                <ButtonLink to="/verify" variant="dark" iconLeft={<Search className="h-5 w-5" />}>
+                  Verify a Document
+                </ButtonLink>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-4 text-xs text-slate-400 lg:justify-start">
+                {trustBadges.map((badge) => (
+                  <span key={badge} className="flex items-center gap-1">
+                    <CheckCircle className="h-3.5 w-3.5 text-blue-300" />
+                    {badge}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 text-xs text-slate-400">
-              {trustBadges.map((badge) => (
-                <span key={badge} className="flex items-center gap-1">
-                  <CheckCircle className="h-3.5 w-3.5 text-blue-300" />
-                  {badge}
-                </span>
-              ))}
+            <div className="relative">
+              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/10 shadow-2xl backdrop-blur-sm">
+                <img
+                  src={heroImage}
+                  alt="Digital attestation workflow in TrueDoc"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-6 left-4 rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-left shadow-xl backdrop-blur md:left-6">
+                <p className="text-xs font-semibold uppercase tracking-wider text-blue-300">One-time attestation</p>
+                <p className="mt-1 text-sm text-slate-200">Reusable for scholarships, bank accounts, and official office work.</p>
+              </div>
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="mt-20 grid grid-cols-2 gap-4 md:grid-cols-4">
             {stats.map((stat) => (
               <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm">
                 <div className="mb-2 flex justify-center">{stat.icon}</div>
@@ -229,30 +253,39 @@ export default function Home() {
 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-14 text-center">
-            <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600">
-              How It Works
-            </span>
-            <h2 className="mt-4 mb-3 text-3xl font-bold text-slate-800 sm:text-4xl">Simple 4-Step Process</h2>
-            <p className="mx-auto max-w-xl text-slate-500">From upload to verified PDF in as little as 24 hours.</p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-4">
-            {steps.map((step, index) => (
-              <div key={step.step} className="relative">
-                {index < steps.length - 1 && (
-                  <div className="absolute top-8 left-[75%] z-0 hidden h-0.5 w-[calc(100%-60px)] bg-slate-200 md:block" />
-                )}
-                <div className={`relative z-10 rounded-xl border p-5 ${step.color}`}>
-                  <div className="mb-4 flex items-center justify-between">
-                    <div className="rounded-lg bg-white p-2.5 shadow-sm">{step.icon}</div>
-                    <span className="text-2xl font-black text-slate-200">{step.step}</span>
-                  </div>
-                  <h3 className="mb-2 font-semibold text-slate-800">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-600">{step.description}</p>
-                </div>
+          <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600">
+                How It Works
+              </span>
+              <h2 className="mt-4 mb-3 text-3xl font-bold text-slate-800 sm:text-4xl">Simple 4-Step Process</h2>
+              <p className="mb-8 max-w-xl text-slate-500">From upload to verified PDF in as little as 24 hours.</p>
+              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <img
+                  src={uploadWorkflowImage}
+                  alt="Citizen uploading a document to TrueDoc"
+                  className="aspect-square w-full object-cover"
+                />
               </div>
-            ))}
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {steps.map((step, index) => (
+                <div key={step.step} className="relative">
+                  {index < 2 && (
+                    <div className="absolute top-8 left-full z-0 hidden h-0.5 w-8 bg-slate-200 md:block" />
+                  )}
+                  <div className={`relative z-10 h-full rounded-xl border p-5 ${step.color}`}>
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="rounded-lg bg-white p-2.5 shadow-sm">{step.icon}</div>
+                      <span className="text-2xl font-black text-slate-200">{step.step}</span>
+                    </div>
+                    <h3 className="mb-2 font-semibold text-slate-800">{step.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-600">{step.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -313,42 +346,85 @@ export default function Home() {
             </ButtonLink>
           </div>
 
-          <div className="rounded-xl bg-white p-6 text-slate-800 shadow-2xl">
-            <div className="mb-5 flex items-center gap-2">
-              <div className="h-3 w-3 animate-pulse rounded-full bg-emerald-500" />
-              <span className="text-sm font-semibold text-emerald-700">Document Verified — Valid</span>
+          <div className="space-y-5">
+            <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-2xl">
+              <img
+                src={verificationDemoImage}
+                alt="Verification dashboard preview"
+                className="aspect-square w-full object-cover"
+              />
             </div>
+            <div className="rounded-xl bg-white p-6 text-slate-800 shadow-2xl">
+              <div className="mb-5 flex items-center gap-2">
+                <div className="h-3 w-3 animate-pulse rounded-full bg-emerald-500" />
+                <span className="text-sm font-semibold text-emerald-700">Document Verified — Valid</span>
+              </div>
 
-            <div className="mb-4 rounded-xl border border-slate-200 p-4">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-slate-100">
-                  <FileText className="h-6 w-6 text-slate-400" />
+              <div className="mb-4 rounded-xl border border-slate-200 p-4">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+                    <FileText className="h-6 w-6 text-slate-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-slate-800">HSC Certificate 2019</p>
+                    <p className="text-xs text-slate-500">Educational Certificate • PDF</p>
+                    <p className="mt-1 text-xs text-slate-500">Owner: Abdul Karim</p>
+                  </div>
                 </div>
+              </div>
+
+              <div className="mb-4 grid grid-cols-2 gap-3">
+                <div className="rounded-lg bg-slate-50 p-3">
+                  <p className="text-[10px] font-semibold uppercase text-slate-500">Verification ID</p>
+                  <p className="mt-1 break-all font-mono text-xs font-bold text-slate-800">TD-2026-A1B2C3D4</p>
+                </div>
+                <div className="rounded-lg bg-slate-50 p-3">
+                  <p className="text-[10px] font-semibold uppercase text-slate-500">Attested On</p>
+                  <p className="mt-1 text-xs font-bold text-slate-800">May 13, 2026</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-3">
+                <Award className="h-8 w-8 shrink-0 text-emerald-600" />
                 <div>
-                  <p className="text-sm font-semibold text-slate-800">HSC Certificate 2019</p>
-                  <p className="text-xs text-slate-500">Educational Certificate • PDF</p>
-                  <p className="mt-1 text-xs text-slate-500">Owner: Abdul Karim</p>
+                  <p className="text-xs font-semibold text-emerald-800">Attested by Dr. Ahmed Hassan</p>
+                  <p className="text-[10px] text-emerald-600">Assoc. Professor, BUET • Approved Verifier</p>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="mb-4 grid grid-cols-2 gap-3">
-              <div className="rounded-lg bg-slate-50 p-3">
-                <p className="text-[10px] font-semibold uppercase text-slate-500">Verification ID</p>
-                <p className="mt-1 break-all font-mono text-xs font-bold text-slate-800">TD-2026-A1B2C3D4</p>
-              </div>
-              <div className="rounded-lg bg-slate-50 p-3">
-                <p className="text-[10px] font-semibold uppercase text-slate-500">Attested On</p>
-                <p className="mt-1 text-xs font-bold text-slate-800">May 13, 2026</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-3">
-              <Award className="h-8 w-8 shrink-0 text-emerald-600" />
-              <div>
-                <p className="text-xs font-semibold text-emerald-800">Attested by Dr. Ahmed Hassan</p>
-                <p className="text-[10px] text-emerald-600">Assoc. Professor, BUET • Approved Verifier</p>
-              </div>
+      <section className="bg-slate-950 py-20 text-white">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr]">
+          <div className="overflow-hidden rounded-2xl border border-white/10">
+            <img
+              src={officeVerificationImage}
+              alt="Office worker verifying a TrueDoc-attested document"
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
+          <div>
+            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-200">
+              For Offices & Institutions
+            </span>
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">Built for the places that ask for attested copies every day</h2>
+            <p className="mt-4 max-w-xl text-slate-300">
+              Banks, employers, universities, embassies, and government offices can check a verification number instead of
+              re-checking paper photocopies manually.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {[
+                'Lower fraud risk with searchable attestation records',
+                'Faster front-desk and back-office document checks',
+                'API-ready workflow for organizations at BDT 2 per lookup',
+                'Accountability trail for each verifier approval',
+              ].map((item) => (
+                <div key={item} className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200">
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
         </div>
