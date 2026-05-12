@@ -1,0 +1,49 @@
+# TrueDoc - Complete Command Cheat Sheet
+
+## 🐍 Backend Commands (Django)
+*Run these commands from the `backend` directory while the virtual environment is activated.*
+
+# 1. Environment & Setup
+source venv/bin/activate       # Activate virtual environment
+pip install -r requirements.txt # Install Python dependencies
+deactivate                      # Deactivate virtual environment
+
+# 2. Database Migrations
+python manage.py makemigrations # Detect model changes
+python manage.py migrate        # Apply database migrations
+
+# 3. Running Servers
+python manage.py runserver      # Start the Django development server
+
+# 4. Utilities
+python manage.py createsuperuser # Create an Admin account
+python manage.py shell          # Open the interactive Python shell with Django loaded
+python manage.py check          # Check project for errors
+
+# 5. Background Tasks (Celery)
+celery -A truedoc_core worker -l info # Run the Celery worker for async tasks (needs Redis)
+
+---
+
+## ⚛️ Frontend Commands (React/Vite)
+*Run these commands from the `frontend` directory.*
+
+npm install       # Install Node.js dependencies
+npm run dev       # Start the Vite development server locally
+npm run build     # Build the project for production deployment
+npm run preview   # Preview the production build locally
+
+---
+
+## 🐳 Docker Commands
+*Run these commands from the root project directory (`/home/samim01/Code/TrueDoc/`).*
+
+docker-compose up --build       # Build images and start all containers (API, DB, Redis, Celery, Frontend)
+docker-compose up -d            # Start all containers in the background
+docker-compose down             # Stop and remove containers, networks
+docker-compose down -v          # Stop and remove containers, AND wipe database volumes (reset data)
+
+# Docker Exec commands (Running commands inside containers)
+docker-compose exec web python manage.py migrate          # Run migrations inside the docker container
+docker-compose exec web python manage.py createsuperuser  # Create superuser inside the docker container
+docker-compose exec web bash                              # Open a bash shell inside the backend container
